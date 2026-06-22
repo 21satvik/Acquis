@@ -1,0 +1,16 @@
+# learning machinery, never committed
+lab/
+.claude/
+CLAUDE.md
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# local data and secrets (results/ IS committed)
+data/
+models/
+.env

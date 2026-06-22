@@ -1,0 +1,47 @@
+[project]
+name = "acquis"
+version = "0.1.0"
+description = "Cross-lingual regulatory retrieval: visual vs text bake-off with a validation-grade eval harness"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.6,<2.12",
+    "transformers>=5.3,<6",
+    "colpali-engine>=0.3.17",
+    "FlagEmbedding>=1.4",
+    "docling>=2.100",
+    "qdrant-client>=1.18",
+    "httpx>=0.28",
+    "fastapi>=0.136",
+    "uvicorn>=0.49",
+    "langgraph>=1.2",
+    "langfuse>=4.7",
+    "numpy>=2.4",
+    "pandas>=3.0",
+    "scikit-learn>=1.9",
+    "apscheduler>=3.11",
+]
+# torch <2.12 is forced by colpali-engine 0.3.x; verified against PyPI 2026-06-11.
+# streamlit is deliberately absent until M11 per CLAUDE.md.
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }
+torchvision = { index = "pytorch-cpu" }
+
+[dependency-groups]
+dev = ["pytest>=9.0", "ruff>=0.9"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
